@@ -9,7 +9,7 @@ const xLabelsVisibility = new Array(24)
   .fill(0)
   .map((_, i) => (i % 2 === 0 ? true : false));
 
-const yLabels = ["Sun", "Mondaaaaa", "Tue"];
+const yLabels = ["Sun", "Mondaaaaaay", "Tue"];
 const data = new Array(yLabels.length)
   .fill(0)
   .map(() =>
@@ -22,9 +22,9 @@ ReactDOM.render(
   yLabels={yLabels}
   xLabelsLocation={"bottom"}
   xLabelsVisibility={xLabelsVisibility}
-  xLabelWidth={200}
+  xLabelWidth={100}
   height={70}
-  yLabelTextWidth={200}
+  yLabelTextWidth={100}
   data={data}
   squares
     onClick={(x, y) => alert(`Clicked ${x}, ${y}`)}

@@ -23,19 +23,18 @@ const DataGrid = ({
   const flatArray = data.reduce((i, o) => [...o, ...i], []);
   const max = Math.max(...flatArray);
   const min = Math.min(...flatArray);
-  console.log(displayYLabels, 'displayYLabels')
+
   return (
     <div>
       {yLabels.map((y, yi) => (
         <div key={yi} style={{ display: "flex" }}>
-          <FixedBox width={xLabelWidth}>
+          <FixedBox width={0}>
           {/* this line is responsible for y labels */}
             <div
               style={{
                 textAlign: yLabelTextAlign,
                 paddingRight: "5px",
                 overflow: "auto",
-                // marginRight: `${yLabelTextMargin}`,
                 paddingTop: `${height / 3.7}px`,
                 width: `${yLabelTextWidth}`
               }}
