@@ -9,7 +9,9 @@ const DataGrid = ({
   xLabelWidth,
   background,
   height,
+  width,
   yLabelTextAlign,
+  yLabelTextWidth,
   unit,
   displayYLabels,
   onClick,
@@ -21,31 +23,38 @@ const DataGrid = ({
   const flatArray = data.reduce((i, o) => [...o, ...i], []);
   const max = Math.max(...flatArray);
   const min = Math.min(...flatArray);
+  console.log(displayYLabels, 'displayYLabels')
   return (
     <div>
       {yLabels.map((y, yi) => (
         <div key={yi} style={{ display: "flex" }}>
           <FixedBox width={xLabelWidth}>
+          {/* this line is responsible for y labels */}
             <div
               style={{
                 textAlign: yLabelTextAlign,
                 paddingRight: "5px",
+                overflow: "auto",
+                // marginRight: `${yLabelTextMargin}`,
                 paddingTop: `${height / 3.7}px`,
+                width: `${yLabelTextWidth}`
               }}
             >
-              {displayYLabels && y}
+              {displayYLabels && y} 
             </div>
           </FixedBox>
+          {/* xLabels gets mapped out with cell blocks */}
           {xLabels.map((x, xi) => {
             const value = data[yi][xi];
             const style = Object.assign({}, cellStyle(background, value, min, max, data, xi, yi), {
               cursor: `${cursor}`,
-              margin: "1px 1px 0 0",
+              margin: "1px 1px 0px 0px",
               height,
               width: squares ? `${height}px` : undefined,
               flex: squares ? "none" : 1,
-              textAlign: "center",
+              textAlign: "center"
             })
+           
             return (
               <div
                 onClick={onClick.bind(this, xi, yi)}
@@ -54,7 +63,7 @@ const DataGrid = ({
                 style={style}
               >
                 <div style={{ paddingTop: `${height / 3.7}px` }}>
-                  {cellRender(value)}
+                  {cellRender(value)} 
                 </div>
               </div>
             )
@@ -75,6 +84,7 @@ DataGrid.propTypes = {
   data: PropTypes.arrayOf(PropTypes.array).isRequired,
   background: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
   xLabelWidth: PropTypes.number.isRequired,
   yLabelTextAlign: PropTypes.string.isRequired,
   unit: PropTypes.string.isRequired,

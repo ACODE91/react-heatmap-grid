@@ -9,7 +9,7 @@ const xLabelsVisibility = new Array(24)
   .fill(0)
   .map((_, i) => (i % 2 === 0 ? true : false));
 
-const yLabels = ["Sun", "Mon", "Tue"];
+const yLabels = ["Sun", "Mondaaaaa", "Tue"];
 const data = new Array(yLabels.length)
   .fill(0)
   .map(() =>
@@ -18,13 +18,15 @@ const data = new Array(yLabels.length)
 
 ReactDOM.render(
   <HeatMap
-    xLabels={xLabels}
-    yLabels={yLabels}
-    xLabelsLocation={"bottom"}
-    xLabelsVisibility={xLabelsVisibility}
-    xLabelWidth={50}
-    data={data}
-    squares
+  xLabels={xLabels}
+  yLabels={yLabels}
+  xLabelsLocation={"bottom"}
+  xLabelsVisibility={xLabelsVisibility}
+  xLabelWidth={200}
+  height={70}
+  yLabelTextWidth={200}
+  data={data}
+  squares
     onClick={(x, y) => alert(`Clicked ${x}, ${y}`)}
     cellStyle={(background, value, min, max, data, x, y) => ({
       background: `rgb(66, 86, 244, ${1 - (max - value) / (max - min)})`,
